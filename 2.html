@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22222222</title>
+	<style>
+		#box{
+			height: 300px;
+			width: 300px;
+			background: red;
+		}
+		#box2{
+			height: 200px;
+			width: 200px;
+			background: blue;
+		}
+		#box3{
+			height: 100px;
+			width: 100px;
+			background: pink;
+		}
+	</style>
+	
+	<script>
+		window.onload = function(){
+			var obox = document.getElementById('box');
+			var obox2 = document.getElementById('box2')
+			var obox3 = document.getElementById('box3')
+			/*obox.onclick = function(){
+				alert('88');
+			};
+			obox.addEventListener('click',function(){
+				alert(1);
+			},false);
+			
+			obox.addEventListener('click',function(){
+				alert(2);
+			},false);*/
+			
+			//兼容ie   attachEvent
+			/*obox.attachEvent('onclick',function(){
+				alert('a');
+			})
+			obox.attachEvent('onclick',function(){
+				alert('b');
+			})*/
+			
+			function bind(ele,eve,handle,type){
+				if(ele.attachEvent){
+					ele.attachEvent('on'+eve,handle);
+				}else{
+					ele.addEventListener(eve,handle,type);
+				}
+			}
+			
+			bind(obox,'click',function(e){
+				alert('box1');
+				var even = e || window.event;
+				if(even && even.stopPropagation){
+					even.stopPropagation();
+				}else{
+					even.cancelBubble();
+				}
+			},false);
+			bind(obox2,'click',function(e){
+				alert("box2");
+				var even = e || window.event;
+				if(even && even.stopPropagation){
+					even.stopPropagation();
+				}else{
+					even.cancelBubble();
+				}
+			},false);
+			bind(obox3,'click',function(e){
+				alert("box3");
+				var even = e || window.event;
+				if(even && even.stopPropagation){
+					even.stopPropagation();
+				}else{
+					even.cancelBubble();
+				}
+			},false);
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="box2">
+			<div id="box3"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clothes</title>
+	<script>
+		window.onload = function(){
+			var obtn = document.getElementById('btn');
+			obtn.onclick = function(){
+				var xhr = null;
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();
+				}else{
+					xhr = new ActiveXObject("Microsoft.XMLHttp");
+				}
+		
+				xhr.open('post','http://datainfo.duapp.com/shopdata/getclass.php',true);
+				
+				xhr.send();
+		
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4){
+						if(xhr.status == 200){
+//							var resp = JSON.parse(xhr.responseText);
+							alert(xhr.responseText);
+						}else{
+							alert(xhr.status);
+						}
+					}
+				}
+			}
+		}
+	</script>
+	<style>
+		#wrapper{
+			margin: 0 auto;
+			width: 1000px;
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+		}
+		ul li{
+			display: inline-block;
+			width: 320px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			background: red;
+		}
+		ul li img{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<button id="btn">sousuo</button>
+		<ul id="ul">
+			<li><img src="news.png" alt=""></li>
+			<li><img src="news.png" alt=""></li>
+			<li><img src="news.png" alt=""></li>
+			<li><img src="news.png" alt=""></li>
+		</ul>
+	</div>
+	
+</body>
+</html>
+
+

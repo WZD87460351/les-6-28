@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>event</title>
+	<script>
+		window.onload = function(){
+			var obtn = document.getElementById('btn');
+			var oul = document.getElementById('ul');
+//			var oa = oul.getElementsByTagName('a');
+			
+			obtn.onclick = function(){
+				var LI = document.createElement('li');
+				LI.innerHTML = 'new   <a href="">delete</a>';
+				oul.appendChild(LI);
+			}
+			
+			oul.onmouseover = function(e){
+				var eve = e || window.event;
+				var target = eve.srcElement || eve.target;
+//				alert(target.nodeName);
+				if(target.nodeName.toLowerCase() == 'li'){
+					target.style.background = 'red';
+				}
+				
+			}
+			
+			oul.onmouseout = function(e){
+				var eve = e || window.event;
+				var target = eve.srcElement || eve.target;
+				if(target.nodeName.toLowerCase() == 'li'){
+					target.style.background = '';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<button id="btn">creat</button>
+	<ul id="ul">
+		<li>www <a href="">delete</a></li>
+		<li>wgg <a href="">delete</a></li>
+		<li>wwd <a href="">delete</a></li>
+		<li>wdd <a href="">delete</a></li>
+	</ul>
+</body>
+</html>

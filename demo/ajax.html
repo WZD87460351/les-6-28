@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax</title>
+	<script>
+		window.onload = function(){
+			var obtn = document.getElementById('btn');
+			obtn.onclick = function(){
+				var name = document.getElementById('name');
+				var age = document.getElementById('age');
+				var obox = document.getElementById('box');
+				var xhr = null;
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();
+				}else{
+					xhr = new ActiveXObject("Microsoft.XMLHttp");
+				}
+		
+				xhr.open('post','./post.php',true);
+				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+				xhr.send('username=' + name.value+'&age='+age.value);
+		
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4){
+						if(xhr.status == 200){
+							obox.innerText = xhr.responseText;
+						}else{
+							alert(xhr.status);
+						}
+					}
+				}
+			}
+		}
+		
+	</script>
+</head>
+<body>
+	username:<input type="text" id="name"> <br>
+	age: <input type="text" id="age"> <br>
+	<button id="btn">button</button>
+	<div id="box">
+		
+	</div>
+</body>
+</html>
